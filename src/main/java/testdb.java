@@ -4,9 +4,9 @@ import java.sql.SQLException;
 
 public class testdb {
     public static void main(String[] args){
-        String url ="jdbc:mariadb://localhost:3306/pruebas";
-        String user="admin";
-        String password="admin";
+        String url ="jdbc:mariadb://localhost:3306/empresa";
+        String user="root";
+        String password="";
         try {
             Connection cnx= DriverManager.getConnection(url,user,password);
             System.out.println("Estado de la conexion");
