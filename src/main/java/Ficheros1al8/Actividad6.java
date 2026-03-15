@@ -1,4 +1,5 @@
-import java.io.BufferedReader;
+package Ficheros1al8;
+
 import java.io.FileReader;
 import java.io.IOException;
 

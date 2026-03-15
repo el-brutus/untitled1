@@ -1,4 +1,5 @@
-import java.awt.*;
+package Ficheros1al8;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
