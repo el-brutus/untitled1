@@ -10,7 +10,7 @@ public class compra {
 
     public static void main(String[] args){
 
-        String path = "C:\\Users\\raulm\\OneDrive\\Documentos\\GitHub\\producto.txt";
+        String path = "C:\\Users\\raulm\\Documents\\GitHub\\producto.txt";
         Scanner sc = new Scanner(System.in);
         String opcion="";
         int cantidad;
@@ -23,7 +23,8 @@ public class compra {
 
        try {
            PrintWriter pw = new PrintWriter(path);
-           pw.println("PRODUCTO PRECIO CANTIDAD SUBTOTAL");
+           pw.println("PRODUCTO\t PRECIO CANTIDAD SUBTOTAL");
+           pw.println("---------------------------------");
            while (!opcion.equalsIgnoreCase("FIN")) {
                impproductos();
                System.out.print("Introduce un producto: ");
@@ -38,7 +39,11 @@ public class compra {
            }
 
            for (producto producto:lista){
-               pw.println(producto.getNombre()+"\t"+ producto.getPrecio()+"\t"+ producto.getCantidad()+"\t"+producto.calculartotal());
+               if (producto.getNombre().length()<=6){
+                   pw.println(producto.getNombre()+"\t\t"+ producto.getPrecio()+"\t"+ producto.getCantidad()+"\t"+producto.calculartotal());
+               }else {
+                   pw.println(producto.getNombre()+"\t"+ producto.getPrecio()+"\t"+ producto.getCantidad()+"\t"+producto.calculartotal());
+               }
            }
 
            double preciofinal=0;
@@ -47,6 +52,7 @@ public class compra {
            }
            System.out.print("Introduce un codigo de descuento: ");
            String descuento=sc.nextLine();
+           pw.println("---------------------------------");
            if (descuento.equalsIgnoreCase("PROMOECO")){
 
                pw.print("Descuento aplicado, ");
@@ -54,10 +60,19 @@ public class compra {
            }else{
                System.out.println("Codigo introducido no valido. ");
            }
-           pw.println("TOTAL:"+preciofinal);
+           pw.println("TOTAL:" + String.format("%.2f",preciofinal));
 
            pw.close();
            System.out.println("Saliendo del programa");
+           System.out.println("Ticket imprimido: ");
+           System.out.println();
+           FileReader fr=new FileReader(path);
+           BufferedReader br = new BufferedReader(fr);
+           String cadena=br.readLine();
+           while (cadena != null){
+               System.out.println(cadena);
+               cadena = br.readLine();
+           }
        }catch (IOException e){
            System.out.println(e.getMessage());
        }
