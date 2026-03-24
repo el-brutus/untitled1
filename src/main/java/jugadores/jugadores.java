@@ -73,6 +73,8 @@ public class jugadores {
                             br2.close();
                             System.out.println("Jugadores guardados");
                             break;
+                        case 3:
+
                         case 0:
                             salida = true;
                             break;
