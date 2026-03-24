@@ -6,9 +6,9 @@ import java.util.HashMap;
 public class clasificacion {
     public static void main(String[] args){
         try {
-            String path="C:\\Users\\raulm\\Documents\\GitHub\\jugadores.txt";
-            String path2="C:\\Users\\raulm\\Documents\\GitHub\\jugadoresexcel.txt";
-            String pathcl="C:\\Users\\raulm\\Documents\\GitHub\\clasificacion.txt";
+            File path= new File("src/main/java/clasificacion/jugadores.txt");
+            File path2=new File("src/main/java/clasificacion/jugadoresexcel.txt");
+            File pathcl=new File("src/main/java/clasificacion/clasificacion.txt");
             HashMap<String, String> jugadores= new HashMap<>();
             FileReader fr = new FileReader(path);
             BufferedReader br= new BufferedReader(fr);
@@ -25,20 +25,25 @@ public class clasificacion {
             BufferedReader br2=new BufferedReader(fr2);
             String cadena2;
             PrintWriter pw=new PrintWriter(pathcl);
+            System.out.println("Guardando clasificacion en un fichero...");
+            int posicion=-1;
             while ((cadena2 = br2.readLine()) != null){
                 String[] partes = cadena2.split("\t");
                 if (partes.length>2){
                     String rank = partes[1];
                     String pts = partes[3];
                     String fide = partes[partes.length-1];
-                    if (jugadores.containsKey(rank)){
-                        pw.printf("%-5s %-25s %-10s %-5s%n",
-                                rank,
-                                jugadores.get(rank),
-                                fide,
-                                pts);                    }
+                    posicion++;
+                    if (jugadores.containsKey(rank)) {
+                        if (posicion == 0) {
+                            pw.printf("%-10s %-34s %-10s %-5s%n", "Posicion", jugadores.get(rank), fide, pts);
+                        } else {
+                            pw.printf("%-10s %-34s %-10s %-5s%n", posicion, jugadores.get(rank), fide, pts);
+                        }
+                    }
                 }
             }
+            System.out.println("✔ Fichero guardado ✔");
             pw.close();
 
         }catch (IOException e){
