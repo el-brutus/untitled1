@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class testdb {
     public static void main(String[] args){
-        String url ="jdbc:mariadb://localhost:3306/empresa";
+        String url ="jdbc:mariadb://localhost:3306/demo_java";
         String user="root";
         String password="";
         try {
